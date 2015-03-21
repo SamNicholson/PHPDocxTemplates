@@ -1,4 +1,8 @@
 {
+
+  "autoload": {
+    "psr-4": {"SNicholson\\": "SNicholson/"}
+  },
   "require": {
     "phpoffice/phpword": "dev-master"
   }
