@@ -6,7 +6,7 @@
  * Time: 05:48
  */
 
-namespace SNicholson\PHPWordMerger;
+namespace SNicholson\PHPDocxTemplates;
 
 use ZipArchive;
 
