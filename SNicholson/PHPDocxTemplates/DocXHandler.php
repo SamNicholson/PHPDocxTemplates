@@ -65,8 +65,4 @@ class DocXHandler implements ZipHandlerInterface {
         $this->XMLFiles[$XMLFile] = $content;
     }
 
-    public function test($wordFile){
-        //        $this->zipWrite->open('temp/zip/newDocument.docx', ZipArchive::CREATE);
-    }
-
 }
