@@ -8,6 +8,8 @@
 
 namespace SNicholson\PHPDocxTemplates\Exceptions;
 
-class InvalidFilenameException {
+use Exception;
+
+class InvalidFilenameException extends Exception {
 
 }

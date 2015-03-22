@@ -9,6 +9,7 @@
 namespace SNicholson\PHPDocxTemplates;
 
 
+use SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException;
 use SNicholson\PHPDocxTemplates\Interfaces\TemplateFileInterface;
 
 class TemplateFile implements TemplateFileInterface {
@@ -29,21 +30,22 @@ class TemplateFile implements TemplateFileInterface {
      * @param mixed $filename
      */
     public function setFilename($filename) {
-        if(!$this->validateFilename($filename)){
-//            throw new
-        }
+        $this->validateFilename($filename);
         $this->filename = $filename;
     }
 
     private function validateFilename($filename){
-        $re = "/^(?P<title>[^#$%&*|{}\\/@=+><!\\\\\\s\\-_~,;:\\[\\]\\(\\).'\"]{1,})\\.(?P<extensions>[a-z]{1,5})$/";
-        $str = "valid.docx\n";
+        $re = "/^(?P<title>[^#$%&*|{}\\/@=+><!\\\\\\s\\-_~,;:\\[\\]\\(\\).'\"]{1,})\\.(?P<extension>[a-z]{1,5})$/";
 
-        preg_match($re, $filename, $matches);
+        preg_match($re, $filename, $match);
 
-        var_dump($matches);
+        if(empty($match)){
+            throw new InvalidFilenameException("Invalid filename provided - $filename");
+        }
 
-        return true;
+        if(!in_array($match['extension'],$this->supportedExtensions)){
+            throw new InvalidFilenameException("Document provided is of an unsupported extension");
+        }
     }
 
 }

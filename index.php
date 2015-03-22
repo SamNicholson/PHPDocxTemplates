@@ -1,8 +1,10 @@
 <?php
 include 'vendor/autoload.php';
 
+$template = new \SNicholson\PHPDocxTemplates\TemplateFile();
+
+$template->setFilename('test.docx');
+$template->setFilename('invalid');
+
+
 echo('Run');
-
-$zip = new \SNicholson\PHPDocxTemplates\ZipHandler();
-
-$zip->test('temp/testme.docx');
