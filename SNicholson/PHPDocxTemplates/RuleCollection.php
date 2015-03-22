@@ -1,7 +1,9 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Sam
- * Date: 21/03/2015
- * Time: 21:35
- */
+
+namespace SNicholson\PHPDocxTemplates;
+
+use SNicholson\PHPDocxTemplates\Interfaces\RuleCollectionInterface;
+
+class RuleCollection implements RuleCollectionInterface {
+
+}

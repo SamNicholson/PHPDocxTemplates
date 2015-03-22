@@ -30,8 +30,9 @@ class TemplateFile implements TemplateFileInterface {
      * @param mixed $filename
      */
     public function setFilename($filename) {
-        $this->validateFilename($filename);
-        $this->filename = $filename;
+        if($this->validateFilename($filename)) {
+            $this->filename = $filename;
+        }
     }
 
     private function validateFilename($filename){
@@ -46,6 +47,8 @@ class TemplateFile implements TemplateFileInterface {
         if(!in_array($match['extension'],$this->supportedExtensions)){
             throw new InvalidFilenameException("Document provided is of an unsupported extension");
         }
+
+        return true;
     }
 
 }
