@@ -9,8 +9,9 @@
 namespace SNicholson\PHPDocxTemplates;
 
 use ZipArchive;
+use SNicholson\PHPDocxTemplates\Interfaces\ZipHandlerInterface;
 
-class ZipHandler {
+class ZipHandler implements ZipHandlerInterface {
 
     public function __construct(){
         $this->zipRead = new ZipArchive();

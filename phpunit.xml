@@ -1,0 +1,10 @@
+<phpunit
+        bootstrap="SNicholson/PHPDocXTemplates/tests/bootstrap.php"
+        colors="true"
+        >
+    <testsuites>
+        <testsuite name="Core Test Suite">
+            <directory>SNicholson/PHPDocXTemplates/tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>

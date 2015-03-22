@@ -2,3 +2,6 @@ vendor/*
 .idea/
 .idea/*
 composer.lock
+temp/
+temp/*
+phpunit.phar
