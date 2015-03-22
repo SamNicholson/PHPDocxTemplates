@@ -6,12 +6,12 @@
  * Time: 21:36
  */
 
-namespace SNicholson\PHPDocxTemplates;
+namespace SNicholson\PHPDocxTemplates\Rules;
 
 
 use SNicholson\PHPDocxTemplates\Interfaces\RuleInterface;
 
-class Rule implements RuleInterface{
+class SimpleRule implements RuleInterface{
 
     private $target;
     private $data;

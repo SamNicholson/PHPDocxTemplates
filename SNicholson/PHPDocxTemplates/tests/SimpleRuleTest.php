@@ -9,12 +9,12 @@
 namespace SNicholson\PHPDocxTemplates\Tests;
 
 
-use SNicholson\PHPDocxTemplates\Rule;
+use SNicholson\PHPDocxTemplates\Rules\SimpleRule;
 
 class RuleTest extends \PHPUnit_Framework_TestCase {
 
     function testSetRuleEscapesInvalidCharacters(){
-        $rule = new Rule();
+        $rule = new SimpleRule();
         $escapeMe = '&Target123123';
         $escaped = htmlentities($escapeMe);
         $rule->setTarget($escapeMe);
@@ -22,14 +22,14 @@ class RuleTest extends \PHPUnit_Framework_TestCase {
     }
 
     function testStringDataTypeAllowed(){
-        $rule = new Rule();
+        $rule = new SimpleRule();
         $data = 'astring';
         $rule->setData($data);
         $this->assertEquals($data,$rule->getData());
     }
 
     function testFunctionDataTypeAllowed(){
-        $rule = new Rule();
+        $rule = new SimpleRule();
         $data = function(){
             return 'thisIsTheReturn';
         };

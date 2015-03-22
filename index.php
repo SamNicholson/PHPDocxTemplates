@@ -1,10 +1,18 @@
 <?php
+use SNicholson\PHPDocxTemplates\RuleCollection;
+
 include 'vendor/autoload.php';
 
 $template = new \SNicholson\PHPDocxTemplates\TemplateFile();
 
-$template->setFilename('test.docx');
-$template->setFilename('invalid');
+$ruleCollection = new RuleCollection();
+$ruleTarget = 'testText';
+$ruleData = function(){
+    return 'thisisatest'.'test';
+};
+$ruleCollection->addSimpleRule($ruleTarget,$ruleData);
+$ruleCollectionRules = $ruleCollection->getRules();
 
+var_dump($ruleCollectionRules);
 
-echo('Run');
+var_dump(get_class($ruleCollectionRules[0]));
