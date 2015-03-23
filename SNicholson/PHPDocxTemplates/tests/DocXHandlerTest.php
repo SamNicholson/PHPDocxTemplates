@@ -10,6 +10,7 @@ namespace SNicholson\PHPDocxTemplates\Tests;
 
 
 use SNicholson\PHPDocxTemplates\DocXHandler;
+use SNicholson\PHPDocxTemplates\TemplateFile;
 use ZipArchive;
 
 class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
@@ -23,7 +24,9 @@ class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
     }
 
     function createDocXHandlerTest(){
-        return new DocXHandler($this->templateFileMock,$this->zipArchiveMock);
+        $handler = new DocXHandler($this->zipArchiveMock);
+        $handler->setTemplateFile($this->templateFileMock);
+        return $handler;
     }
 
     function testCheckReadIteratesOverAllZipEntries(){
@@ -65,6 +68,15 @@ class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
         $this->zipArchiveMock->expects($this->once())->method('close')->willReturn(true);
         $docXHandler->setXMLFile('test.xml',$sampleXML);
         $docXHandler->overwriteTemplate('test.docx');
+    }
+
+    function testXMLFilesToBeSearchedSearchXMLs(){
+        $sampleXMLContent = 'someXMLContent';
+        $sampleXMLFilename = 'word/searchable.xml';
+        $docXHandler = $this->createDocXHandlerTest();
+        $docXHandler->setXMLFile($sampleXMLFilename,$sampleXMLContent);
+        $expected = [$sampleXMLFilename => $sampleXMLContent];
+        $this->assertEquals($expected,$docXHandler->getXMLFilesToBeSearched());
     }
 
 }

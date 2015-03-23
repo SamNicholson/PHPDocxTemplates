@@ -9,14 +9,34 @@
 namespace SNicholson\PHPDocxTemplates\Tests;
 
 
+use SNicholson\PHPDocxTemplates\Merger;
+use SNicholson\PHPDocxTemplates\RuleCollection;
+use SNicholson\PHPDocxTemplates\TemplateFile;
+
 class MergerTest extends \PHPUnit_Framework_TestCase {
 
-    function testGetterSetterRuleCollection(){
+    private $docXHandlerMock;
 
+    function setUp(){
+        $this->docXHandlerMock = $this->getMock('SNicholson\PHPDocxTemplates\DocXHandler',[],[],'',false);
+    }
+
+    function testGetterSetterRuleCollection(){
+        $merger = $this->getMerger();
+        $ruleCollectionMock = new RuleCollection();
+        $merger->setRuleCollection($ruleCollectionMock);
+        $this->assertEquals($ruleCollectionMock,$merger->getRuleCollection());
     }
 
     function testGetterSetterTemplateFile(){
+        $merger = $this->getMerger();
+        $templateFileMock = new TemplateFile();
+        $merger->setTemplateFile($templateFileMock);
+        $this->assertEquals($templateFileMock,$merger->getTemplateFile());
+    }
 
+    function getMerger(){
+        return new Merger($this->docXHandlerMock);
     }
 
 }
