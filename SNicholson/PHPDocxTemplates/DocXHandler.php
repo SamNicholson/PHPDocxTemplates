@@ -15,12 +15,16 @@ class DocXHandler implements ZipHandlerInterface {
 
     private $zipRead;
     private $zipWrite;
+    /** @var  TemplateFile $templateFile */
     private $templateFile;
     private $XMLFiles;
 
-    public function __construct(TemplateFile $templateFile, ZipArchive $zipArchive){
+    public function __construct(ZipArchive $zipArchive){
         $this->zipRead = $zipArchive;
         $this->zipWrite = $zipArchive;
+    }
+
+    public function setTemplateFile(TemplateFile $templateFile){
         $this->templateFile = $templateFile;
     }
 
@@ -59,6 +63,16 @@ class DocXHandler implements ZipHandlerInterface {
             throw new \InvalidArgumentException('XML File Specified Does not exist');
         }
         return $this->XMLFiles[$XMLFile];
+    }
+
+    public function getXMLFilesToBeSearched(){
+        $XMLReturns = [];
+        foreach($this->XMLFiles AS $filename => $contents){
+            if(stristr($filename,'word/')){
+                $XMLReturns[$filename] = $contents;
+            }
+        }
+        return $XMLReturns;
     }
 
     public function setXMLFile($XMLFile,$content){
