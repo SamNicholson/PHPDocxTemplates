@@ -35,6 +35,17 @@ class MergerTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($templateFileMock,$merger->getTemplateFile());
     }
 
+    function testSaveMergedDocument(){
+        $merger = $this->getMerger();
+        $templateFileMock = new TemplateFile();
+        $merger->setTemplateFile($templateFileMock);
+        $ruleCollectionMock = new RuleCollection();
+        $merger->setRuleCollection($ruleCollectionMock);
+        $this->docXHandlerMock->expects($this->once())->method('saveAs')->with('test.docx');
+        $this->docXHandlerMock->expects($this->once())->method('getXMLFilesToBeSearched')->willReturn([]);
+        $merger->saveMergedDocument('test.docx');
+    }
+
     function getMerger(){
         return new Merger($this->docXHandlerMock);
     }
