@@ -6,11 +6,15 @@ use SNicholson\PHPDocxTemplates\SimpleMerge;
 
 include __DIR__.'../../../../vendor/autoload.php';
 
+$test = 1;
+
 $ruleCollection = new RuleCollection();
-$ruleTarget = '#test#';
-$ruleData = function(){
-    return 'thisisatest'.'test';
+$ruleTarget = '/Testing123/';
+$ruleData = function($matches){
+    global $test;
+    $test++;
+    return $test;
 };
-$ruleCollection->addSimpleRule($ruleTarget,$ruleData);
+$ruleCollection->addRegexpRule($ruleTarget,$ruleData);
 
 SimpleMerge::perform('../../../temp/testme.docx','../../../temp/testsimplemerge.docx',$ruleCollection);

@@ -11,4 +11,23 @@ namespace SNicholson\PHPDocxTemplates\Interfaces;
 
 interface RuleInterface {
 
+    /**
+     * @return mixed
+     */
+    public function getTarget();
+
+    /**
+     * @param mixed $target
+     */
+    public function setTarget($target);
+
+    /**
+     * @return mixed
+     */
+    public function getData();
+
+    /**
+     * @param mixed $data
+     */
+    public function setData($data);
 }

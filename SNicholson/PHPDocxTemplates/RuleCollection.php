@@ -3,6 +3,7 @@
 namespace SNicholson\PHPDocxTemplates;
 
 use SNicholson\PHPDocxTemplates\Interfaces\RuleCollectionInterface;
+use SNicholson\PHPDocxTemplates\Rules\RegexpRule;
 use SNicholson\PHPDocxTemplates\Rules\SimpleRule;
 
 class RuleCollection implements RuleCollectionInterface {
@@ -14,6 +15,13 @@ class RuleCollection implements RuleCollectionInterface {
         $simpleRule->setData($data);
         $simpleRule->setTarget($target);
         $this->rules[] = $simpleRule;
+    }
+
+    public function addRegexpRule($target,$data){
+        $regExpRule = new RegexpRule();
+        $regExpRule->setTarget($target);
+        $regExpRule->setData($data);
+        $this->rules[] = $regExpRule;
     }
 
     public function getRules(){

@@ -36,7 +36,7 @@ class TemplateFile implements TemplateFileInterface {
     }
 
     private function validateFilename($filename){
-        $re = "/^(?P<title>[^#$%&*|{}\@=+><!\\\\\\s\\-_~,;:\\[\\]\\(\\).'\"]{1,})\\.(?P<extension>[a-z]{1,5})$/";
+        $re = "/^(?P<title>[^#$%&*|{}\@=+><!\\\\\\s\\-_~,;:\\[\\]\\(\\)'\"]{1,})\\.(?P<extension>[a-z]{1,5})$/";
 
         preg_match($re, $filename, $match);
 

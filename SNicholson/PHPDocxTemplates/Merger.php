@@ -73,16 +73,28 @@ class Merger {
                     case 'SimpleRule':
                         $content = $this->mergeSimpleRule($content,$rule->getData(),$rule->getTarget());
                         break;
+                    case 'RegexpRule':
+                        $content = $this->mergeRegexpRule($content,$rule->getData(),$rule->getTarget());
+                        break;
                 }
                 $this->docXHandler->setXMLFile($filename,$content);
             }
         }
     }
 
+    public function mergeRegexpRule($content,$data,$target){
+        $content = preg_replace_callback(
+            $target,$data,$content
+        );
+        return $content;
+    }
+
     private function mergeSimpleRule($content,$data,$target){
+        //If this is a closure gets it value
         if(is_object($data) && ($data instanceof Closure)){
             $data = $data();
         }
+        //Run a simple string replace
         return str_replace($target,$data,$content);
     }
 
