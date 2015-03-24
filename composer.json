@@ -1,6 +1,6 @@
 {
 
-  "name": "SNicholson/PHPDocxTemplates",
+  "name": "snicholson/docxtemplates",
   "version": "1.1",
   "description": "Merge data into .docx templates in a similar fashion to mailmerge",
   "require": {
