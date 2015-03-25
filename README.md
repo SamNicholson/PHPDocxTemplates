@@ -2,8 +2,11 @@
 A PHP Library For Using Docx Files As Fillable Templates
 
 ## Installation
-Currently you will need to download the classes and register the "SNicholson" folder in your autoloader. I will be moving
- this onto packagist for installation via composer.
+Can be installed via composer, simply require the following - 
+
+``` javascript
+require: "snicholson/docxtemplates": "dev-master"
+```
 
 ## Usage
 Using PHPDocxTemplates is simple, to run a merge on a document, you first need to define a rule collection. This is done
