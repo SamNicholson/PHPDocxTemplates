@@ -4,7 +4,7 @@ use SNicholson\PHPDocxTemplates\Merger;
 use SNicholson\PHPDocxTemplates\RuleCollection;
 use SNicholson\PHPDocxTemplates\SimpleMerge;
 
-include __DIR__.'../../../../vendor/autoload.php';
+include '../vendor/autoload.php';
 
 $ruleCollection = new RuleCollection();
 $ruleTarget = '#test#';
@@ -13,4 +13,4 @@ $ruleData = function(){
 };
 $ruleCollection->addSimpleRule($ruleTarget,$ruleData);
 
-SimpleMerge::perform('../../../temp/testme.docx','../../../temp/testsimplemerge.docx',$ruleCollection);
+SimpleMerge::perform('../temp/testme.docx','../temp/testsimplemerge.docx',$ruleCollection);

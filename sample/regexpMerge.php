@@ -4,7 +4,7 @@ use SNicholson\PHPDocxTemplates\Merger;
 use SNicholson\PHPDocxTemplates\RuleCollection;
 use SNicholson\PHPDocxTemplates\SimpleMerge;
 
-include __DIR__.'../../../../vendor/autoload.php';
+include __DIR__.'../vendor/autoload.php';
 
 $test = 1;
 
@@ -17,4 +17,4 @@ $ruleData = function($matches){
 };
 $ruleCollection->addRegexpRule($ruleTarget,$ruleData);
 
-SimpleMerge::perform('../../../temp/testme.docx','../../../temp/testsimplemerge.docx',$ruleCollection);
+SimpleMerge::perform('../temp/testme.docx','../temp/testsimplemerge.docx',$ruleCollection);

@@ -7,7 +7,7 @@
     "php": ">=5.4.0"
   },
   "autoload": {
-    "psr-4": {"SNicholson\\": "SNicholson/"}
+    "psr-4": {"SNicholson\\PHPDocxTemplates\\": ""}
   },
   "require-dev": {
     "phpunit/phpunit": "4.5.*"
