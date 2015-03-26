@@ -4,17 +4,13 @@ use SNicholson\PHPDocxTemplates\Merger;
 use SNicholson\PHPDocxTemplates\RuleCollection;
 use SNicholson\PHPDocxTemplates\SimpleMerge;
 
-include __DIR__.'../vendor/autoload.php';
-
-$test = 1;
+include '../../vendor/autoload.php';
 
 $ruleCollection = new RuleCollection();
-$ruleTarget = '/Testing123/';
-$ruleData = function($matches){
-    global $test;
-    $test++;
-    return $test;
+$ruleTarget = '#test#';
+$ruleData = function(){
+    return 'thisisatest'.'test';
 };
-$ruleCollection->addRegexpRule($ruleTarget,$ruleData);
+$ruleCollection->addSimpleRule($ruleTarget,$ruleData);
 
 SimpleMerge::perform('../temp/testme.docx','../temp/testsimplemerge.docx',$ruleCollection);
