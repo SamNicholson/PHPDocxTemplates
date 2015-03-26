@@ -38,7 +38,10 @@ $ruleData = function(){
     return 'a test value from a closure';
 };
 $ruleCollection->addSimpleRule($ruleTarget,$ruleData);
-$ruleCollection->addSimpleRule('#someMoreTextToReplace#','Some text that needs replacing!');
+$ruleCollection->addSimpleRule(
+ '#someMoreTextToReplace#',
+ 'Some text that needs replacing!'
+);
 
 ```
 
@@ -50,7 +53,7 @@ in a closure and act on their values accordingly - <br>
 $ruleCollection = new RuleCollection();
 $ruleTarget = '/ARegularExpression/';
 $ruleData = function($match){
-    //I can perform login on the $match value in here
+    //I can perform logic on the $match value in here
     return substr($match,0,3);
 };
 $ruleCollection->addRegexpRule($ruleTarget,$ruleData);
