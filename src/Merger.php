@@ -13,6 +13,10 @@ use Closure;
 use SNicholson\PHPDocxTemplates\Exceptions\MergeException;
 use SNicholson\PHPDocxTemplates\Rules\SimpleRule;
 
+/**
+ * Class Merger
+ * @package SNicholson\PHPDocxTemplates
+ */
 class Merger {
 
     /** @var  RuleCollection $ruleCollection*/
@@ -21,8 +25,14 @@ class Merger {
     private $templateFile;
     /** @var  DocXHandler $docXHandler */
     private $docXHandler;
+    /**
+     * @var bool
+     */
     private $merged = false;
 
+    /**
+     * @param DocXHandler $docXHandler
+     */
     public function __construct(DocXHandler $docXHandler){
         $this->docXHandler = $docXHandler;
     }
@@ -55,6 +65,9 @@ class Merger {
         $this->templateFile = $templateFile;
     }
 
+    /**
+     * Merges the rules into the TemplateFile in question
+     */
     public function merge(){
         //Read the assigned template
         $this->docXHandler->setTemplateFile($this->templateFile);
@@ -82,6 +95,14 @@ class Merger {
         }
     }
 
+    /**
+     * Handles merging a regexp rule
+     * @param $content
+     * @param $data
+     * @param $target
+     *
+     * @return mixed
+     */
     public function mergeRegexpRule($content,$data,$target){
         $content = preg_replace_callback(
             $target,$data,$content
@@ -89,6 +110,14 @@ class Merger {
         return $content;
     }
 
+    /**
+     * Handles merging simple rules
+     * @param $content
+     * @param $data
+     * @param $target
+     *
+     * @return mixed
+     */
     private function mergeSimpleRule($content,$data,$target){
         //If this is a closure gets it value
         if(is_object($data) && ($data instanceof Closure)){
@@ -98,6 +127,9 @@ class Merger {
         return str_replace($target,$data,$content);
     }
 
+    /**
+     * @param $mergedFilename
+     */
     public function saveMergedDocument($mergedFilename){
         if(!$this->merged){
             $this->merge();

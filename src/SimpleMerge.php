@@ -14,6 +14,12 @@ use ZipArchive;
 
 class SimpleMerge {
 
+    /**
+     * Performs a simple merge using the library
+     * @param                $inputFile
+     * @param                $outputFile
+     * @param RuleCollection $ruleCollection
+     */
     static function perform($inputFile, $outputFile, RuleCollection $ruleCollection){
         $template = new TemplateFile();
         $template->setFilename($inputFile);

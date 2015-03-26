@@ -12,14 +12,27 @@ namespace SNicholson\PHPDocxTemplates;
 use SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException;
 use SNicholson\PHPDocxTemplates\Interfaces\TemplateFileInterface;
 
+/**
+ * Class TemplateFile
+ * @package SNicholson\PHPDocxTemplates
+ */
 class TemplateFile implements TemplateFileInterface {
 
+    /**
+     * The filename of the Template
+     * @var
+     */
     private $filename;
+    /**
+     * The extends that the merging library supports
+     * @var array
+     */
     private $supportedExtensions = [
         'docx'
     ];
 
     /**
+     * Get the filename
      * @return mixed
      */
     public function getFilename() {
@@ -27,6 +40,7 @@ class TemplateFile implements TemplateFileInterface {
     }
 
     /**
+     * Set the filename
      * @param mixed $filename
      */
     public function setFilename($filename) {
@@ -35,6 +49,13 @@ class TemplateFile implements TemplateFileInterface {
         }
     }
 
+    /**
+     * Validates whether a filename meets our requirements - format and structure
+     * @param $filename
+     *
+     * @return bool
+     * @throws InvalidFilenameException
+     */
     private function validateFilename($filename){
         $re = "/^(?P<title>[^#$%&*|{}\@=+><!\\\\\\s\\-_~,;:\\[\\]\\(\\)'\"]{1,})\\.(?P<extension>[a-z]{1,5})$/";
 
