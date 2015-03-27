@@ -31,4 +31,22 @@ class RuleCollectionTest extends \PHPUnit_Framework_TestCase {
         $this->assertEquals($ruleData,$ruleCollectionRules[0]->getData());
     }
 
+    function testRouteCollectionAllowsAddingValidRegexpRules(){
+        $ruleCollection = new RuleCollection();
+        $ruleTarget = 'aregexp';
+        $ruleData = function(){
+            return 'thisisatest'.'test';
+        };
+        $ruleCollection->addRegexpRule($ruleTarget,$ruleData);
+        $ruleCollectionRules = $ruleCollection->getRules();
+
+        $this->assertEquals(
+            'SNicholson\PHPDocxTemplates\Rules\RegexpRule',
+            get_class($ruleCollectionRules[0])
+        );
+
+        $this->assertEquals($ruleTarget,$ruleCollectionRules[0]->getTarget());
+        $this->assertEquals($ruleData,$ruleCollectionRules[0]->getData());
+    }
+
 }

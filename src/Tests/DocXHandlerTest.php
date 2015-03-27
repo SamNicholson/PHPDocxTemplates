@@ -11,7 +11,7 @@ namespace SNicholson\PHPDocxTemplates\Tests;
 
 use SNicholson\PHPDocxTemplates\DocXHandler;
 use SNicholson\PHPDocxTemplates\TemplateFile;
-use ZipArchive;
+use SNicholson\PHPDocxTemplates\ZipArchive;
 
 class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
 
@@ -20,7 +20,7 @@ class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
 
     function setUp(){
         $this->templateFileMock = $this->getMock('SNicholson\PHPDocxTemplates\TemplateFile');
-        $this->zipArchiveMock = $this->getMock('ZipArchive');
+        $this->zipArchiveMock = $this->getMock('SNicholson\PHPDocxTemplates\ZipArchive');
     }
 
     function createDocXHandlerTest(){

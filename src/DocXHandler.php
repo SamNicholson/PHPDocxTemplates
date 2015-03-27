@@ -8,8 +8,8 @@
 
 namespace SNicholson\PHPDocxTemplates;
 
-use ZipArchive;
 use SNicholson\PHPDocxTemplates\Interfaces\ZipHandlerInterface;
+use SNicholson\PHPDocxTemplates\ZipArchive;
 
 /**
  * Class DocXHandler

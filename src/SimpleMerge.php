@@ -10,7 +10,6 @@ namespace SNicholson\PHPDocxTemplates;
 
 
 use SNicholson\PHPDocxTemplates\TemplateFile;
-use ZipArchive;
 
 class SimpleMerge {
 
