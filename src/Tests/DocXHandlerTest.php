@@ -33,6 +33,10 @@ class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
         $docXHandler = $this->createDocXHandlerTest();
         $this->templateFileMock->expects($this->once())->method('getFilename')->willReturn('test.docx');
         $this->zipArchiveMock->expects($this->once())->method('open')->with('test.docx')->willReturn(true);
+        $this->zipArchiveMock->expects($this->once())->method('getNumFiles')->willReturn(2);
+        $this->zipArchiveMock->expects($this->exactly(2))->method('getNameIndex')->willReturn('test');
+        $this->zipArchiveMock->expects($this->exactly(2))->method('getFileContents')->willReturn('test');
+
         $this->zipArchiveMock->expects($this->once())->method('close')->willReturn(true);
         $docXHandler->read();
     }

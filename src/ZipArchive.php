@@ -11,8 +11,18 @@ namespace SNicholson\PHPDocxTemplates;
 
 class ZipArchive extends \ZipArchive{
 
-    public function getNumFile(){
+    public function getNumFiles(){
         return $this->numFiles;
+    }
+
+    public function getFileContents($filename){
+        $fp = $this->getStream($filename);
+        $contents = '';
+        while (!feof($fp)) {
+            $contents .= fread($fp, 8192);
+        }
+        fclose($fp);
+        return $contents;
     }
 
 }

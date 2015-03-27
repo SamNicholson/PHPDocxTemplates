@@ -59,15 +59,11 @@ class DocXHandler implements ZipHandlerInterface {
      */
     public function read(){
         $this->zipRead->open($this->templateFile->getFilename());
-        for($i = 0; $i < $this->zipRead->numFiles; $i++) {
+        $fileCount = $this->zipRead->getNumFiles();
+        for($i = 0; $i < $fileCount; $i++) {
             $filename = $this->zipRead->getNameIndex($i);
-            $fp = $this->zipRead->getStream($filename);
-            $contents = '';
-            while (!feof($fp)) {
-                $contents .= fread($fp, 8192);
-            }
+            $contents = $this->zipRead->getFileContents($filename);
             $this->XMLFiles[$filename] = $contents;
-            fclose($fp);
         }
         $this->zipRead->close();
     }
