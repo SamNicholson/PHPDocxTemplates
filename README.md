@@ -70,7 +70,6 @@ SimpleMerge::perform('input.docx','output.docx',$ruleCollection);
 
 ## TODO
 Outstanding<br>
- - Build in the ability to have a regexp rule, and use regexp in a closure (preg_replace_callback())<br>
- - Be able to generate basic manipulations of text bold, italic, underline<br>
  - Be able to replace text with images<br>
  - Be able to generate an insert tables in place of text<br>
+ - Support Basic formatting (bold, italic, line returns) from HTML input to the XML format
