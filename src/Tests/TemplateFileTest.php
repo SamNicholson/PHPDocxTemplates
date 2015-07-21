@@ -17,7 +17,7 @@ class TemplateFileTest extends PHPUnit_Framework_TestCase {
         ];
         foreach($invalidFileNames AS $filename){
             $this->setExpectedException('SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException');
-            $templateFile->setFilename($filename);
+            $templateFile->setFilePath($filename);
         }
     }
 
@@ -28,15 +28,15 @@ class TemplateFileTest extends PHPUnit_Framework_TestCase {
         ];
         foreach($invalidFileTypes AS $filename){
             $this->setExpectedException('SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException');
-            $templateFile->setFilename($filename);
+            $templateFile->setFilePath($filename);
         }
     }
 
     public function testValidFileNameIsSet(){
         $templateFile = new TemplateFile();
         $filename = 'validFile.docx';
-        $templateFile->setFilename($filename);
-        $this->assertEquals($filename,$templateFile->getFilename());
+        $templateFile->setFilePath($filename);
+        $this->assertEquals($filename,$templateFile->getFilePath());
     }
 
 }

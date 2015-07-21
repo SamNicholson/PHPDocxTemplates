@@ -16,13 +16,14 @@ use SNicholson\PHPDocxTemplates\Interfaces\TemplateFileInterface;
  * Class TemplateFile
  * @package SNicholson\PHPDocxTemplates
  */
-class TemplateFile implements TemplateFileInterface {
+class TemplateFile implements TemplateFileInterface
+{
 
     /**
-     * The filename of the Template
+     * The filePath of the Template
      * @var
      */
-    private $filename;
+    private $filePath;
     /**
      * The extends that the merging library supports
      * @var array
@@ -32,36 +33,43 @@ class TemplateFile implements TemplateFileInterface {
     ];
 
     /**
-     * Get the filename
+     * Get the filePath
      * @return mixed
      */
-    public function getFilename() {
-        return $this->filename;
+    public function getFilePath()
+    {
+        return $this->filePath;
     }
 
     /**
-     * Set the filename
+     * Set the filePath
+     *
      * @param mixed $filename
      */
-    public function setFilename($filename) {
-        if($this->validateFilename($filename)) {
-            $this->filename = $filename;
+    public function setFilePath($filename)
+    {
+        if ($this->validateFilename($filename)) {
+            $this->filePath = $filename;
         }
     }
 
     /**
-     * Validates whether a filename meets our requirements - format and structure
-     * @param $filename
+     * Validates whether a filePath meets our requirements - format and structure and existence!
+     *
+     * @param $filePath
      *
      * @return bool
      * @throws InvalidFilenameException
      */
-    private function validateFilename($filename){
-        $extension = explode('.', $filename)[count(explode('.', $filename)) -1];
-        if(!in_array($extension,$this->supportedExtensions)){
+    private function validateFilename($filePath)
+    {
+        $extension = explode('.', $filePath)[count(explode('.', $filePath)) - 1];
+        if (!in_array($extension, $this->supportedExtensions)) {
             throw new InvalidFilenameException("Document provided is of an unsupported extension");
         }
-
+        if (!file_exists($filePath)) {
+            throw new \InvalidArgumentException("File Path specified did not exist");
+        }
         return true;
     }
 

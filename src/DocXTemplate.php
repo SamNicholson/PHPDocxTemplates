@@ -15,7 +15,7 @@ class DocXTemplate
     static function merge($inputFile, $outputFile, RuleCollection $ruleCollection)
     {
         $template = new TemplateFile();
-        $template->setFilename($inputFile);
+        $template->setFilePath($inputFile);
         $merger = new Merger(new DocXHandler(new ZipArchive()));
         $merger->setTemplateFile($template);
         $merger->setRuleCollection($ruleCollection);

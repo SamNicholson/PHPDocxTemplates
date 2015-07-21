@@ -2,7 +2,11 @@
 
 namespace SNicholson\PHPDocxTemplates\Tests;
 
+use PHPUnit_Framework_TestCase;
+use SNicholson\PHPDocxTemplates\DocXHandler;
 use SNicholson\PHPDocxTemplates\DocXTemplate;
+use SNicholson\PHPDocxTemplates\TemplateFile;
+use SNicholson\PHPDocxTemplates\ZipArchive;
 
 /**
  * Class FullMergeTests
@@ -10,7 +14,7 @@ use SNicholson\PHPDocxTemplates\DocXTemplate;
  * but this one passes then that'll do pig, that'll do!
  * @package SNicholson\PHPDocxTemplates\Tests
  */
-class FullMergeTests extends \PHPUnit_Framework_TestCase
+class FullMergeTests extends PHPUnit_Framework_TestCase
 {
 
     /**
@@ -18,7 +22,6 @@ class FullMergeTests extends \PHPUnit_Framework_TestCase
      */
     public function testSimpleDocumentWithClosuresAndStringReplaceMerges()
     {
-
         $rc = DocXTemplate::ruleCollection();
         $rc->addSimpleRules(
             [
@@ -44,7 +47,31 @@ class FullMergeTests extends \PHPUnit_Framework_TestCase
 
         DocXTemplate::merge($targetDocX, $destinationDocX, $rc);
 
-        $this->assertEquals(file_get_contents($referenceDocX), file_get_contents($destinationDocX));
+        $this->compareTwoDocXFilesForSameContent($referenceDocX, $destinationDocX);
+    }
+
+    /**
+     * This method compares the XML file contents of 2 docX files to check whether a merge has worked on them!
+     * @param $referenceDocXFilePath
+     * @param $producedDocXFilePath
+     *
+     * @throws \SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException
+     */
+    private function compareTwoDocXFilesForSameContent($referenceDocXFilePath, $producedDocXFilePath)
+    {
+        $refTempFile = new TemplateFile();
+        $refTempFile->setFilePath($referenceDocXFilePath);
+        $refDocX = new DocXHandler(new ZipArchive());
+        $refDocX->setTemplateFile($refTempFile);
+        $refDocX->read();
+
+        $prodDocXFile = new TemplateFile();
+        $prodDocXFile->setFilePath($producedDocXFilePath);
+        $prodDocX = new DocXHandler(new ZipArchive());
+        $prodDocX->setTemplateFile($prodDocXFile);
+        $prodDocX->read();
+
+        $this->assertEquals($refDocX->getXMLFilesToBeSearched(), $prodDocX->getXMLFilesToBeSearched());
     }
 
 }
