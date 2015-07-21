@@ -23,9 +23,14 @@ class DocXTemplate
         $merger->saveMergedDocument($outputFile);
     }
 
+    /**
+     * Returns a new instance of RuleCollection
+     *
+     * @return RuleCollection
+     */
     static function ruleCollection()
     {
-
+        return new RuleCollection();
     }
 
 }
