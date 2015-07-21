@@ -32,5 +32,4 @@ class DocXTemplate
     {
         return new RuleCollection();
     }
-
 }

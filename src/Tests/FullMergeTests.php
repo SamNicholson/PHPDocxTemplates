@@ -20,42 +20,30 @@ class FullMergeTests extends \PHPUnit_Framework_TestCase
     public function testSimpleDocumentWithClosuresAndStringReplaceMerges()
     {
 
-        $ruleCollection = new RuleCollection();
-
-        //Replace the text merge
-        $ruleCollection = new RuleCollection();
-        $ruleTarget     = '#MERGE#';
-        $ruleData       = function () {
-            return 'I replaced merge!!';
-        };
-        //Replace the text merge 3
-        $ruleCollection->addSimpleRule($ruleTarget, $ruleData);
-        $ruleTarget = '#MERGE3#';
-        $ruleData   = function () {
-            return 'I replaced merge 3, noticed how we skipped merge 2?';
-        };
-        $ruleCollection->addSimpleRule($ruleTarget, $ruleData);
-
-        //Replace the text code
-        $ruleCollection->addSimpleRule($ruleTarget, $ruleData);
-        $ruleTarget = '#code#';
-        $ruleData   = function () {
-            return 'mergecode ( <-- just that bit )';
-        };
-        $ruleCollection->addSimpleRule($ruleTarget, $ruleData);
+        $rc = DocXTemplate::ruleCollection();
+        $rc->addSimpleRules(
+            [
+                '#MERGE#'           => 'I replaced merge!!',
+                '#MERGE3'           => 'I replaced merge 3, noticed how we skipped merge 2?',
+                '#code#'            => 'mergecode ( <-- just that bit )',
+                '#FOOTERMERGE#'     => 'Yep, we can replace text in the footer',
+                '#HEADERMERGE#'     => 'Yep, we can replace text in the header',
+                '#JUSTMERGEONPAGE#' => 'I was the only text on a page!'
+            ]
+        );
 
         //Regexp for MERGETEST and capture the +X part
         $ruleTarget = '/#MERGETEST\+([0-9]*)#/';
         $ruleData   = function ($match) {
             return $match[0] . ' was replaced with this, it had the number ' . $match[1] . ' after it';
         };
-        $ruleCollection->addRegexpRule($ruleTarget, $ruleData);
+        $rc->addRegexpRule($ruleTarget, $ruleData);
 
 
         $targetDocX = __DIR__ . '\DocXFiles\SimpleMerge.docx';
         $destinationDocX = __DIR__ . '\DocXFiles\SimpleMergeOutput.docx';
 
-        DocXTemplate::merge($targetDocX, $destinationDocX, $ruleCollection);
+        DocXTemplate::merge($targetDocX, $destinationDocX, $rc);
 
         $this->assertEquals(file_get_contents($targetDocX), file_get_contents($destinationDocX));
     }
