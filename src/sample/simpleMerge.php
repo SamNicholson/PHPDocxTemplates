@@ -1,6 +1,6 @@
 <?php
 use SNicholson\PHPDocxTemplates\RuleCollection;
-use SNicholson\PHPDocxTemplates\PHPDocX;
+use SNicholson\PHPDocxTemplates\DocXTemplate;
 
 include '../../vendor/autoload.php';
 
@@ -11,4 +11,4 @@ $ruleData       = function () {
 };
 $ruleCollection->addSimpleRule($ruleTarget, $ruleData);
 
-PHPDocX::merge('../temp/testme.docx', '../temp/testsimplemerge.docx', $ruleCollection);
+DocXTemplate::merge('../temp/testme.docx', '../temp/testsimplemerge.docx', $ruleCollection);

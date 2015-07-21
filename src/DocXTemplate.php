@@ -2,7 +2,7 @@
 
 namespace SNicholson\PHPDocxTemplates;
 
-class PHPDocX
+class DocXTemplate
 {
 
     /**

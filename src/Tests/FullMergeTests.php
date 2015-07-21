@@ -3,7 +3,7 @@
 namespace SNicholson\PHPDocxTemplates\Tests;
 
 use SNicholson\PHPDocxTemplates\RuleCollection;
-use SNicholson\PHPDocxTemplates\PHPDocX;
+use SNicholson\PHPDocxTemplates\DocXTemplate;
 
 /**
  * Class FullMergeTests
@@ -55,7 +55,7 @@ class FullMergeTests extends \PHPUnit_Framework_TestCase
         $targetDocX = __DIR__ . '\DocXFiles\SimpleMerge.docx';
         $destinationDocX = __DIR__ . '\DocXFiles\SimpleMergeOutput.docx';
 
-        PHPDocX::merge($targetDocX, $destinationDocX, $ruleCollection);
+        DocXTemplate::merge($targetDocX, $destinationDocX, $ruleCollection);
 
         $this->assertEquals(file_get_contents($targetDocX), file_get_contents($destinationDocX));
     }
