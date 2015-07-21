@@ -13,30 +13,35 @@ use SNicholson\PHPDocxTemplates\Merger;
 use SNicholson\PHPDocxTemplates\RuleCollection;
 use SNicholson\PHPDocxTemplates\TemplateFile;
 
-class MergerTest extends \PHPUnit_Framework_TestCase {
+class MergerTest extends \PHPUnit_Framework_TestCase
+{
 
     private $docXHandlerMock;
 
-    function setUp(){
-        $this->docXHandlerMock = $this->getMock('SNicholson\PHPDocxTemplates\DocXHandler',[],[],'',false);
+    public function setUp()
+    {
+        $this->docXHandlerMock = $this->getMock('SNicholson\PHPDocxTemplates\DocXHandler', [], [], '', false);
     }
 
-    function testGetterSetterRuleCollection(){
-        $merger = $this->getMerger();
+    public function testGetterSetterRuleCollection()
+    {
+        $merger             = $this->getMerger();
         $ruleCollectionMock = new RuleCollection();
         $merger->setRuleCollection($ruleCollectionMock);
-        $this->assertEquals($ruleCollectionMock,$merger->getRuleCollection());
+        $this->assertEquals($ruleCollectionMock, $merger->getRuleCollection());
     }
 
-    function testGetterSetterTemplateFile(){
-        $merger = $this->getMerger();
+    public function testGetterSetterTemplateFile()
+    {
+        $merger           = $this->getMerger();
         $templateFileMock = new TemplateFile();
         $merger->setTemplateFile($templateFileMock);
-        $this->assertEquals($templateFileMock,$merger->getTemplateFile());
+        $this->assertEquals($templateFileMock, $merger->getTemplateFile());
     }
 
-    function testSaveMergedDocument(){
-        $merger = $this->getMerger();
+    public function testSaveMergedDocument()
+    {
+        $merger           = $this->getMerger();
         $templateFileMock = new TemplateFile();
         $merger->setTemplateFile($templateFileMock);
         $ruleCollectionMock = new RuleCollection();
@@ -46,7 +51,8 @@ class MergerTest extends \PHPUnit_Framework_TestCase {
         $merger->saveMergedDocument('test.docx');
     }
 
-    function getMerger(){
+    public function getMerger()
+    {
         return new Merger($this->docXHandlerMock);
     }
 

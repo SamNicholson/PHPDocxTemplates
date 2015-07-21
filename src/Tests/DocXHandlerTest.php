@@ -9,13 +9,16 @@
 namespace SNicholson\PHPDocxTemplates\Tests;
 
 
+use PHPUnit_Framework_MockObject_MockObject;
+use PHPUnit_Framework_TestCase;
 use SNicholson\PHPDocxTemplates\DocXHandler;
-use SNicholson\PHPDocxTemplates\TemplateFile;
 use SNicholson\PHPDocxTemplates\ZipArchive;
 
-class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
+class DocXHandlerTest extends PHPUnit_Framework_TestCase {
 
+    /** @var  PHPUnit_Framework_MockObject_MockObject */
     private $templateFileMock;
+    /** @var  PHPUnit_Framework_MockObject_MockObject */
     private $zipArchiveMock;
 
     function setUp(){
@@ -71,7 +74,7 @@ class DocXHandlerTest extends \PHPUnit_Framework_TestCase {
         $this->zipArchiveMock->expects($this->once())->method('addFromString')->with('test.xml',$sampleXML)->willReturn(true);
         $this->zipArchiveMock->expects($this->once())->method('close')->willReturn(true);
         $docXHandler->setXMLFile('test.xml',$sampleXML);
-        $docXHandler->overwriteTemplate('test.docx');
+        $docXHandler->overwriteTemplate();
     }
 
     function testXMLFilesToBeSearchedSearchXMLs(){

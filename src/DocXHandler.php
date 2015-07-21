@@ -8,6 +8,7 @@
 
 namespace SNicholson\PHPDocxTemplates;
 
+use SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException;
 use SNicholson\PHPDocxTemplates\Interfaces\ZipHandlerInterface;
 use SNicholson\PHPDocxTemplates\ZipArchive;
 
@@ -58,7 +59,10 @@ class DocXHandler implements ZipHandlerInterface {
      * Reads the template file that has been set
      */
     public function read(){
-        $this->zipRead->open($this->templateFile->getFilename());
+        if ($errNo = $this->zipRead->open($this->templateFile->getFilename())  !== true) {
+            throw new InvalidFilenameException("Failed to open ZIP file " . $this->templateFile->getFilename() .
+                                               ", ZIP Archive gave error code: " . $errNo);
+        }
         $fileCount = $this->zipRead->getNumFiles();
         for($i = 0; $i < $fileCount; $i++) {
             $filename = $this->zipRead->getNameIndex($i);

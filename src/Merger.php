@@ -124,7 +124,7 @@ class Merger {
             $data = $data();
         }
         //Run a simple string replace
-        return str_replace($target,$data,$content);
+        return str_replace($target,htmlentities($data),$content);
     }
 
     /**

@@ -2,7 +2,7 @@
 use SNicholson\PHPDocxTemplates\DocXHandler;
 use SNicholson\PHPDocxTemplates\Merger;
 use SNicholson\PHPDocxTemplates\RuleCollection;
-use SNicholson\PHPDocxTemplates\SimpleMerge;
+use SNicholson\PHPDocxTemplates\PHPDocX;
 
 include __DIR__.'../../vendor/autoload.php';
 
@@ -17,4 +17,4 @@ $ruleData = function($matches){
 };
 $ruleCollection->addRegexpRule($ruleTarget,$ruleData);
 
-SimpleMerge::perform('../temp/testme.docx','../temp/testsimplemerge.docx',$ruleCollection);
+PHPDocX::merge('../temp/testme.docx','../temp/testsimplemerge.docx',$ruleCollection);

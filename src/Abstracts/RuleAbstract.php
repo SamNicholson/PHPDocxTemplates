@@ -10,7 +10,8 @@ namespace SNicholson\PHPDocxTemplates\Abstracts;
 
 use SNicholson\PHPDocxTemplates\Interfaces\RuleInterface;
 
-class RuleAbstract implements RuleInterface{
+class RuleAbstract implements RuleInterface
+{
 
     private $target;
     private $data;
@@ -18,28 +19,32 @@ class RuleAbstract implements RuleInterface{
     /**
      * @return mixed
      */
-    public function getTarget() {
+    public function getTarget()
+    {
         return $this->target;
     }
 
     /**
      * @param mixed $target
      */
-    public function setTarget($target) {
-        $this->target = htmlentities($target);
+    public function setTarget($target)
+    {
+        $this->target = $target;
     }
 
     /**
      * @return mixed
      */
-    public function getData() {
+    public function getData()
+    {
         return $this->data;
     }
 
     /**
      * @param mixed $data
      */
-    public function setData($data) {
+    public function setData($data)
+    {
         $this->data = $data;
     }
 

@@ -10,7 +10,8 @@ use SNicholson\PHPDocxTemplates\Rules\SimpleRule;
  * Class RuleCollection
  * @package SNicholson\PHPDocxTemplates
  */
-class RuleCollection implements RuleCollectionInterface {
+class RuleCollection implements RuleCollectionInterface
+{
 
     /**
      * The rules that are in this Rule collection
@@ -20,10 +21,12 @@ class RuleCollection implements RuleCollectionInterface {
 
     /**
      * Allows the addition of a simple rule to the rule collection
+     *
      * @param $target
      * @param $data
      */
-    public function addSimpleRule($target,$data){
+    public function addSimpleRule($target, $data)
+    {
         $simpleRule = new SimpleRule();
         $simpleRule->setData($data);
         $simpleRule->setTarget($target);
@@ -31,11 +34,27 @@ class RuleCollection implements RuleCollectionInterface {
     }
 
     /**
+     * Allows the addition of multiple simple rules in array format to the rule collection
+     * Rules array should be in the format ['StringToReplace' => 'TextToReplaceWith', ...]
+     *
+     * @param $rules
+     *
+     */
+    public function addSimpleRules($rules)
+    {
+        foreach ($rules as $target => $data) {
+            $this->addSimpleRule($target, $data);
+        }
+    }
+
+    /**
      * Allows the addition of a regexp rule to the rule collection.
+     *
      * @param $target
      * @param $data
      */
-    public function addRegexpRule($target,$data){
+    public function addRegexpRule($target, $data)
+    {
         $regExpRule = new RegexpRule();
         $regExpRule->setTarget($target);
         $regExpRule->setData($data);
@@ -46,7 +65,8 @@ class RuleCollection implements RuleCollectionInterface {
      * Get the rules in this rule collection
      * @return array
      */
-    public function getRules(){
+    public function getRules()
+    {
         return $this->rules;
     }
 

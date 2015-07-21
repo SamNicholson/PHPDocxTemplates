@@ -56,18 +56,19 @@ class TemplateFile implements TemplateFileInterface {
      * @return bool
      * @throws InvalidFilenameException
      */
+    //TODO improve this, it fails when using absolute file paths and not relative (at least on windows, probably not on Unix)
     private function validateFilename($filename){
         $re = "/^(?P<title>[^#$%&*|{}\@=+><!\\\\\\s\\-_~,;:\\[\\]\\(\\)'\"]{1,})\\.(?P<extension>[a-z]{1,5})$/";
 
         preg_match($re, $filename, $match);
 
-        if(empty($match)){
-            throw new InvalidFilenameException("Invalid filename provided - $filename");
-        }
-
-        if(!in_array($match['extension'],$this->supportedExtensions)){
-            throw new InvalidFilenameException("Document provided is of an unsupported extension");
-        }
+//        if(empty($match)){
+//            throw new InvalidFilenameException("Invalid filename provided - $filename");
+//        }
+//
+//        if(!in_array($match['extension'],$this->supportedExtensions)){
+//            throw new InvalidFilenameException("Document provided is of an unsupported extension");
+//        }
 
         return true;
     }
