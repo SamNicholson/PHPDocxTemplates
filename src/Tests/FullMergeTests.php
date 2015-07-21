@@ -2,7 +2,6 @@
 
 namespace SNicholson\PHPDocxTemplates\Tests;
 
-use SNicholson\PHPDocxTemplates\RuleCollection;
 use SNicholson\PHPDocxTemplates\DocXTemplate;
 
 /**
@@ -39,13 +38,13 @@ class FullMergeTests extends \PHPUnit_Framework_TestCase
         };
         $rc->addRegexpRule($ruleTarget, $ruleData);
 
-
-        $targetDocX = __DIR__ . '\DocXFiles\SimpleMerge.docx';
+        $targetDocX      = __DIR__ . '\DocXFiles\SimpleMerge.docx';
+        $referenceDocX   = __DIR__ . '\DocXFiles\SimpleMergeOutputReference.docx';
         $destinationDocX = __DIR__ . '\DocXFiles\SimpleMergeOutput.docx';
 
         DocXTemplate::merge($targetDocX, $destinationDocX, $rc);
 
-        $this->assertEquals(file_get_contents($targetDocX), file_get_contents($destinationDocX));
+        $this->assertEquals(file_get_contents($referenceDocX), file_get_contents($destinationDocX));
     }
 
 }

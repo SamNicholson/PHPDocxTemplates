@@ -29,7 +29,7 @@ class RuleAbstract implements RuleInterface
      */
     public function setTarget($target)
     {
-        $this->target = $target;
+        $this->target = htmlentities($target);
     }
 
     /**
