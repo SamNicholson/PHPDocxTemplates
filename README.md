@@ -23,7 +23,7 @@ $ruleData = function(){
 };
 $ruleCollection->addSimpleRule($ruleTarget,$ruleData);
 $ruleCollection->addSimpleRule('#someMoreTextToReplace#','Some text that needs replacing!');
-SimpleMerge::perform('input.docx','output.docx',$ruleCollection);
+PHPDOcXTemplate::perform('input.docx','output.docx',$ruleCollection);
 ```
 
 ### Simple Rules
@@ -65,7 +65,7 @@ Merging can be done simply using the Static simpleMerge class, it is intended to
  writable to PHP.
  
 ``` php
-SimpleMerge::perform('input.docx','output.docx',$ruleCollection);
+PHPDOcXTemplate::perform('input.docx','output.docx',$ruleCollection);
 ```
 
 ## TODO
