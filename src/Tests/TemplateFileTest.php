@@ -16,27 +16,8 @@ class TemplateFileTest extends PHPUnit_Framework_TestCase {
             'invalid','invalid.',2
         ];
         foreach($invalidFileNames AS $filename){
-            $this->setExpectedException('SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException');
+            $this->setExpectedException('\InvalidArgumentException');
             $templateFile->setFilePath($filename);
         }
     }
-
-    public function testDisallowedExtensionsThrowException(){
-        $templateFile = new TemplateFile();
-        $invalidFileTypes = [
-            'invalid.doc','invalid.png','arandomfile.zip'
-        ];
-        foreach($invalidFileTypes AS $filename){
-            $this->setExpectedException('SNicholson\PHPDocxTemplates\Exceptions\InvalidFilenameException');
-            $templateFile->setFilePath($filename);
-        }
-    }
-
-    public function testValidFileNameIsSet(){
-        $templateFile = new TemplateFile();
-        $filename = 'validFile.docx';
-        $templateFile->setFilePath($filename);
-        $this->assertEquals($filename,$templateFile->getFilePath());
-    }
-
 }

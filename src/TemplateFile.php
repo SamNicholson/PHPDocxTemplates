@@ -24,13 +24,6 @@ class TemplateFile implements TemplateFileInterface
      * @var
      */
     private $filePath;
-    /**
-     * The extends that the merging library supports
-     * @var array
-     */
-    private $supportedExtensions = [
-        'docx'
-    ];
 
     /**
      * Get the filePath
@@ -63,10 +56,6 @@ class TemplateFile implements TemplateFileInterface
      */
     private function validateFilename($filePath)
     {
-        $extension = explode('.', $filePath)[count(explode('.', $filePath)) - 1];
-        if (!in_array($extension, $this->supportedExtensions)) {
-            throw new InvalidFilenameException("Document provided is of an unsupported extension");
-        }
         if (!file_exists($filePath)) {
             throw new \InvalidArgumentException("File Path specified did not exist");
         }

@@ -34,7 +34,7 @@ class DocXHandlerTest extends PHPUnit_Framework_TestCase {
 
     function testCheckReadIteratesOverAllZipEntries(){
         $docXHandler = $this->createDocXHandlerTest();
-        $this->templateFileMock->expects($this->once())->method('getFilename')->willReturn('test.docx');
+        $this->templateFileMock->expects($this->once())->method('getFilePath')->willReturn('test.docx');
         $this->zipArchiveMock->expects($this->once())->method('open')->with('test.docx')->willReturn(true);
         $this->zipArchiveMock->expects($this->once())->method('getNumFiles')->willReturn(2);
         $this->zipArchiveMock->expects($this->exactly(2))->method('getNameIndex')->willReturn('test');
