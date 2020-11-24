@@ -23,7 +23,7 @@ $ruleData = function(){
 };
 $ruleCollection->addSimpleRule($ruleTarget,$ruleData);
 $ruleCollection->addSimpleRule('#someMoreTextToReplace#','Some text that needs replacing!');
-PHPDOcXTemplate::perform('input.docx','output.docx',$ruleCollection);
+DocXTemplate::merge('input.docx','output.docx',$ruleCollection);
 ```
 
 ### Simple Rules
@@ -55,7 +55,7 @@ $ruleTarget = '/ARegularExpression/';
 $ruleData = function($match){
     //I can perform logic on the $match value in here
     return substr($match,0,3);
-};
+};o
 $ruleCollection->addRegexpRule($ruleTarget,$ruleData);
 ```
 
@@ -65,7 +65,7 @@ Merging can be done simply using the Static simpleMerge class, it is intended to
  writable to PHP.
  
 ``` php
-PHPDOcXTemplate::perform('input.docx','output.docx',$ruleCollection);
+DocXTemplate::merge('input.docx','output.docx',$ruleCollection);
 ```
 
 ## TODO
