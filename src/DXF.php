@@ -15,8 +15,8 @@ class DXF
     public static function getAsArrayWithReplacements()
     {
         return [
-            self::BOLD_START      => '<w:rPr><w:b /><w:t xml:space="preserve">',
-            self::BOLD_END        => "</w:t></w:rPr>",
+            self::BOLD_START      => '</w:t></w:r><w:r><w:rPr><w:b/><w:bCs/></w:rPr><w:t>',
+            self::BOLD_END        => "</w:t></w:r><w:r><w:t>",
             self::UNDERLINE_START => '<w:rPr><w:u /><w:t xml:space="preserve">',
             self::UNDERLINE_END   => "</w:t></w:rPr>",
             self::LINEBREAK       => "<w:br/>",
