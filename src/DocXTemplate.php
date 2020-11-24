@@ -5,6 +5,8 @@ namespace SNicholson\PHPDocxTemplates;
 class DocXTemplate
 {
 
+    private static $enableHTMLFormatting = false;
+
     /**
      * Performs a simple merge using the library
      *
@@ -31,5 +33,21 @@ class DocXTemplate
     static function ruleCollection()
     {
         return new RuleCollection();
+    }
+
+    /**
+     * @return bool
+     */
+    public static function isHTMLFormattingEnabled()
+    {
+        return self::$enableHTMLFormatting;
+    }
+
+    /**
+     *
+     */
+    public static function enableHTMLFormatting()
+    {
+        self::$enableHTMLFormatting = true;
     }
 }

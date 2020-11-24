@@ -124,7 +124,17 @@ class Merger {
             $data = $data();
         }
         //Run a simple string replace
-        return str_replace($target,htmlentities($data),$content);
+        $mergedContent = str_replace($target,htmlentities($data),$content);
+
+        if (DocXTemplate::isHTMLFormattingEnabled()) {
+            foreach (DXF::getAsArrayWithReplacements() as $key => $value)
+            {
+                $mergedContent = str_replace(htmlentities($key), $value, $mergedContent);
+            }
+        }
+
+        return $mergedContent;
+
     }
 
     /**
